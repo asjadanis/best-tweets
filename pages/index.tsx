@@ -1,29 +1,29 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import { StackDivider, VStack } from "@chakra-ui/layout";
+
+import Header from "../components/Header/Header";
+import Search from "../components/Search/Search";
+import Footer from "../components/Footer/Footer";
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Best Tweets</title>
         <meta name="description" content="Best tweets from twitter users" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1>Enter Twitter handle below to see magic</h1>
-      </main>
+      <Header />
 
-      <footer className={styles.footer}>
-        <span>
-          Created with passion by{" "}
-          <a target="_blank" href="https://twitter.com/asjadanis">
-            @asjadanis
-          </a>
-        </span>
-      </footer>
+      <VStack
+        divider={<StackDivider borderColor="gray.200" />}
+        spacing={8}
+        align="stretch">
+        <Search />
+        <Footer />
+      </VStack>
     </div>
   );
 };
