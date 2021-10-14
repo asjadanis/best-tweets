@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Flex, Heading, HStack, Stack, Text } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
-import { Input } from "@chakra-ui/input";
+import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/input";
 
 function Search() {
-  const [searching, setSearching] = useState(false);
-  const [twitterHandle, setTwitterHandle] = useState("");
+  const [searching, setSearching] = useState<boolean>(false);
+  const [twitterHandle, setTwitterHandle] = useState<string>("");
 
   const onSearch = () => {
-    console.log(twitterHandle);
     setSearching(true);
   };
 
@@ -23,10 +22,15 @@ function Search() {
           <Heading size="lg">Best Tweets</Heading>
           <Text>Get the best tweets from a twitter user</Text>
           <HStack>
-            <Input
-              onChange={onInputChange}
-              value={twitterHandle}
-              placeholder="Enter twitter handle"></Input>
+            <InputGroup>
+              <InputLeftAddon children="@" />
+              <Input
+                onChange={onInputChange}
+                value={twitterHandle}
+                placeholder="Enter twitter handle"
+              />
+            </InputGroup>
+
             <Button
               onClick={onSearch}
               isLoading={searching}
