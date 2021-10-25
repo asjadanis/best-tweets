@@ -22,25 +22,22 @@ const userTweets: Array<UserData> = [
     avatar: "/avatar.png",
     tweet: `Today I stumbled upon the term “manageritis” happens when you eventually get sucked into a management role when you never really intended to.
           This book is a great read packed with a couple of great insights`,
-    link: `https://t.co/jxd9uUZjn2?amp=1`,
+    link: `https://learning.oreilly.com/library/view/software-engineering-at/9781492082781/ch05.html`,
   },
   {
     name: "Asjad Anis",
     handle: "asjadanis",
-    location: "Islamabad",
     avatar: "/avatar.png",
     tweet: `Today I stumbled upon the term “manageritis” happens when you eventually get sucked into a management role when you never really intended to.
           This book is a great read packed with a couple of great insights`,
-    link: `https://t.co/jxd9uUZjn2?amp=1`,
+    link: `https://learning.oreilly.com/library/view/software-engineering-at/9781492082781/ch05.html`,
   },
   {
     name: "Asjad Anis",
     handle: "asjadanis",
-    location: "Islamabad",
     avatar: "/avatar.png",
     tweet: `Today I stumbled upon the term “manageritis” happens when you eventually get sucked into a management role when you never really intended to.
           This book is a great read packed with a couple of great insights`,
-    link: `https://t.co/jxd9uUZjn2?amp=1`,
   },
 ];
 
