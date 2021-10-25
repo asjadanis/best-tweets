@@ -3,16 +3,20 @@ import { Flex, Heading, HStack, Stack, Text } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/input";
 
-function Search() {
-  const [searching, setSearching] = useState<boolean>(false);
-  const [twitterHandle, setTwitterHandle] = useState<string>("");
+interface SearchProps {
+  searching: boolean;
+  twitterHandle: string;
+  onSearch: () => void;
+  onChange: (value: string) => void;
+}
 
-  const onSearch = () => {
-    setSearching(true);
+function Search(props: SearchProps) {
+  const onSearch = async () => {
+    props.onSearch();
   };
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTwitterHandle(e.target.value);
+    props.onChange(e.target.value);
   };
 
   return (
@@ -26,14 +30,14 @@ function Search() {
               <InputLeftAddon children="@" />
               <Input
                 onChange={onInputChange}
-                value={twitterHandle}
+                value={props.twitterHandle}
                 placeholder="Enter twitter handle"
               />
             </InputGroup>
 
             <Button
               onClick={onSearch}
-              isLoading={searching}
+              isLoading={props.searching}
               aria-label="Search best tweets">
               Search
             </Button>
