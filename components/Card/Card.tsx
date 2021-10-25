@@ -64,8 +64,12 @@ function Card(props: CardProps) {
                 )}
                 {tweet.link && (
                   <Link
+                    width="200px"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    whiteSpace="nowrap"
                     color="twitter.300"
-                    href={`https://twitter.com/${tweet.handle}`}
+                    href={tweet.handle}
                     target="_blank"
                     marginBottom="2">
                     {tweet.link}
