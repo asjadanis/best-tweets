@@ -5,8 +5,43 @@ import { StackDivider, VStack } from "@chakra-ui/layout";
 import Header from "../components/Header/Header";
 import Search from "../components/Search/Search";
 import Footer from "../components/Footer/Footer";
+import { UserData } from "./api/user";
+import { useState } from "react";
+import Card from "../components/Card/Card";
+import { useToast } from "@chakra-ui/toast";
 
 const Home: NextPage = () => {
+  const [searching, setSearching] = useState<boolean>(false);
+  const [tweets, setTweets] = useState<Array<UserData>>([]);
+  const [twitterHandle, setTwitterHandle] = useState<string>("");
+  const toast = useToast();
+
+  const onSearch = async () => {
+    setSearching(true);
+    const res = await fetch(`/api/user?handle=${twitterHandle}`);
+    const data = await res.json();
+    const { data: tweets } = data;
+    setTweets(tweets);
+    setSearching(false);
+    if (tweets && tweets.length === 0) {
+      toast({
+        position: "top",
+        title: "User not found",
+        description: "Couldn't find a user with the given handle.",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const onChange = (value: string) => {
+    setTwitterHandle(value);
+    if (!value) {
+      setTweets([]);
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -18,10 +53,19 @@ const Home: NextPage = () => {
       <Header />
 
       <VStack
-        divider={<StackDivider borderColor="gray.200" />}
+        // divider={<StackDivider borderColor="gray.200" />}
         spacing={8}
         align="stretch">
-        <Search />
+        <Search
+          searching={searching}
+          twitterHandle={twitterHandle}
+          onSearch={onSearch}
+          onChange={onChange}
+        />
+        {tweets.map((tweet) => {
+          return <Card tweet={tweet} />;
+        })}
+        <StackDivider borderWidth={"thin"} borderColor="gray.20" />
         <Footer />
       </VStack>
     </div>
